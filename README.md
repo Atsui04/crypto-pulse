@@ -37,7 +37,7 @@ A modern, real-time cryptocurrency tracking web application. This project was de
 - **Add your key to the file:**
 
   ```
-    VITE_COINGECKO_API_KEY=your_actual_key_here
+  VITE_COINGECKO_API_KEY=your_actual_key_here
   ```
 
 4. **Run the project:**
