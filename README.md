@@ -1,16 +1,59 @@
-# React + Vite
+# 🪙 Crypto-Pulse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, real-time cryptocurrency tracking web application. This project was developed to master external API integration, React hooks, and effective state management.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Real-time Data:** Fetches live prices for Top-10 cryptocurrencies using the CoinGecko API.
+- **Loading States:** Smooth user experience with a dedicated Loader component during data fetching.
+- **Responsive Design:** Dark-themed UI designed for clarity and modern aesthetics.
+- **API Security:** Implements environment variables (`.env`) to keep sensitive API keys secure.
 
-## React Compiler
+## 🛠 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** (Vite)
+- **JavaScript** (ES6+)
+- **CSS3** (Custom Properties, Flexbox)
+- **CoinGecko API**
 
-## Expanding the ESLint configuration
+## 📦 Installation & Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Atsui04/crypto-pulse.git
+   ```
+
+2. **Install dependencies:**
+
+   ```
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+
+- **Create a .env file in the root directory.**
+- **Obtain a free Demo API Key from CoinGecko.**
+- **Add your key to the file:**
+
+  ```
+    VITE_COINGECKO_API_KEY=your_actual_key_here
+  ```
+
+4. **Run the project:**
+
+   ```bash
+   npm run dev
+   ```
+
+## 🏗 Project Structure
+
+- **`src/api` - Services for handling external HTTP requests.**
+- **`src/components` - Reusable UI components.**
+- **`src/styles` - Global styles and dark theme configuration.**
+
+## 📈 Roadmap
+
+- **[ ] Search and filter functionality.**
+- **[ ] Detailed coin pages with interactive price charts (Chart.js).**
+- **[ ] "Favorites" list with local storage persistence.**
