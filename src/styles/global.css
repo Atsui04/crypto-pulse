@@ -58,18 +58,18 @@ footer {
   padding: 2.4rem 3.2rem;
 }
 
-.list-header {
-  display: flex;
+.list-header,
+.coin {
+  display: grid;
+  grid-template-columns: 2.5fr 1.2fr 1fr 1.5fr;
+  align-items: center;
   gap: 2rem;
-  padding: 0 2.4rem;
-  margin-bottom: 1rem;
-  color: var(--secondary);
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  font-weight: 600;
+  padding: 1.6rem 2.4rem;
 }
 
 .header-item {
+  font-size: 1.8rem;
+  color: var(--secondary);
   cursor: pointer;
   user-select: none;
   transition: color 0.2s ease;
@@ -86,11 +86,6 @@ footer {
 .coin {
   background-color: var(--surface);
   border-radius: 11px;
-  padding: 1.6rem 2.4rem;
-
-  display: flex;
-  gap: 2rem;
-
   transition:
     transform 0.2s ease,
     background-color 0.2s ease;
@@ -102,30 +97,35 @@ footer {
   transform: translateY(-2px);
 }
 
+.coin-item,
+.header-item {
+  min-width: 0;
+}
+
+.coin-item:not(:first-child),
+.header-item:not(:first-child) {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.coin-item:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
 .coin-item {
   display: flex;
   align-items: center;
   gap: 1.2rem;
 }
 
-.coin-item:nth-child(1),
-.header-item:nth-child(1) {
-  flex: 0 0 25rem;
-}
-.coin-item:nth-child(2),
-.header-item:nth-child(2) {
-  flex: 0 0 15rem;
-}
-.coin-item:nth-child(3),
-.header-item:nth-child(3) {
-  flex: 0 0 12rem;
-}
-.coin-item:nth-child(4),
-.header-item:nth-child(4) {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  text-align: right;
+.coin-name {
+  color: var(--secondary);
+  font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .coin-positive {
@@ -148,15 +148,6 @@ footer {
 .coin-symbol {
   font-weight: 600;
   text-transform: uppercase;
-}
-
-.coin-name {
-  color: var(--secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 15rem;
-  font-size: 1.2rem;
 }
 
 .coin-rank {
@@ -290,10 +281,31 @@ footer {
   html {
     font-size: 50%;
   }
+
+  .list-header,
+  .coin {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  .coin-item:nth-child(4),
+  .header-item:nth-child(4) {
+    display: none;
+  }
 }
 
 @media (max-width: 540px) {
   html {
     font-size: 42.5%;
+  }
+
+  .list-header,
+  .coin {
+    grid-template-columns: 1fr 1fr;
+    padding: 1.2rem 1.6rem;
+  }
+
+  .coin-item:nth-child(3),
+  .header-item:nth-child(3) {
+    display: none;
   }
 }
