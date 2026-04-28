@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { getCoins } from "./api/coinsApi";
 
 import sorting from "./utils/sorting";
+import filtering from "./utils/filtering";
 
 import CoinsList from "./components/CoinsList";
 import Loader from "./components/Loader";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Search from "./components/Search";
+import EmptyCoins from "./components/EmptyCoins";
 
 const App = () => {
   const [coins, setCoins] = useState([]);
@@ -14,8 +17,11 @@ const App = () => {
   const [error, setError] = useState("");
   const [sortBy, setSortBy] = useState("market_cap");
   const [sortOrder, setSortOrder] = useState("desc");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const sortedCoins = sorting(coins, sortBy, sortOrder);
+  const filteredCoins = filtering(coins, searchQuery);
+
+  const sortedCoins = sorting(filteredCoins, sortBy, sortOrder);
 
   function handleSort(newSortBy) {
     if (sortBy === newSortBy) {
@@ -24,6 +30,14 @@ const App = () => {
       setSortBy(newSortBy);
       setSortOrder("desc");
     }
+  }
+
+  function handleSearch(e) {
+    setSearchQuery(e.target.value);
+  }
+
+  function handleClearSearch() {
+    setSearchQuery("");
   }
 
   useEffect(function () {
@@ -52,12 +66,21 @@ const App = () => {
       <Header />
 
       <main className="container">
+        <div className="controls">
+          <Search searchQuery={searchQuery} onSearch={handleSearch} />
+        </div>
+
         {isLoading ? (
           <div className="loader-container">
             <Loader />
           </div>
         ) : error ? (
           <p>{error}</p>
+        ) : sortedCoins.length === 0 && searchQuery !== "" ? (
+          <EmptyCoins
+            searchQuery={searchQuery}
+            onClearSearch={handleClearSearch}
+          />
         ) : (
           <CoinsList
             coins={sortedCoins}
