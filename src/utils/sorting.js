@@ -4,10 +4,13 @@ export default function sorting(coins, sortBy, sortOrder) {
   const direction = sortOrder === "asc" ? 1 : -1;
 
   return [...coins].sort((a, b) => {
-    if (typeof a[sortBy] !== "number") {
-      return a[sortBy].localeCompare(b[sortBy]) * direction;
+    const valA = a[sortBy] ?? 0;
+    const valB = b[sortBy] ?? 0;
+
+    if (typeof valA !== "number") {
+      return String(valA).localeCompare(String(valB)) * direction;
     } else {
-      return (a[sortBy] - b[sortBy]) * direction;
+      return (valA - valB) * direction;
     }
   });
 }
