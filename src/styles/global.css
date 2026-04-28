@@ -79,6 +79,10 @@ footer {
   color: var(--primary);
 }
 
+.header-item.active {
+  color: var(--accent);
+}
+
 .coin {
   background-color: var(--surface);
   border-radius: 11px;
