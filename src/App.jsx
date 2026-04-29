@@ -1,99 +1,24 @@
-import { useEffect, useState } from "react";
-import { getCoins } from "./api/coinsApi";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import AppLayout from "./components/AppLayout";
+import CoinPage from "./pages/CoinPage";
+import Home from "./pages/Home";
 
-import sorting from "./utils/sorting";
-import filtering from "./utils/filtering";
-
-import CoinsList from "./components/CoinsList";
-import Loader from "./components/Loader";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Search from "./components/Search";
-import EmptyCoins from "./components/EmptyCoins";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      { index: true, element: <Home /> },
+      {
+        path: "/coin/:id",
+        element: <CoinPage />,
+      },
+    ],
+  },
+]);
 
 const App = () => {
-  const [coins, setCoins] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [sortBy, setSortBy] = useState("market_cap");
-  const [sortOrder, setSortOrder] = useState("desc");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filteredCoins = filtering(coins, searchQuery);
-
-  const sortedCoins = sorting(filteredCoins, sortBy, sortOrder);
-
-  function handleSort(newSortBy) {
-    if (sortBy === newSortBy) {
-      setSortOrder((prev) => (prev === "desc" ? "asc" : "desc"));
-    } else {
-      setSortBy(newSortBy);
-      setSortOrder("desc");
-    }
-  }
-
-  function handleSearch(e) {
-    setSearchQuery(e.target.value);
-  }
-
-  function handleClearSearch() {
-    setSearchQuery("");
-  }
-
-  useEffect(function () {
-    async function fetchCoins() {
-      try {
-        setIsLoading(true);
-        setError("");
-
-        const data = await getCoins();
-
-        console.log(data);
-
-        setCoins(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchCoins();
-  }, []);
-
-  return (
-    <div className="app-wrapper">
-      <Header />
-
-      <main className="container">
-        <div className="controls">
-          <Search searchQuery={searchQuery} onSearch={handleSearch} />
-        </div>
-
-        {isLoading ? (
-          <div className="loader-container">
-            <Loader />
-          </div>
-        ) : error ? (
-          <p>{error}</p>
-        ) : sortedCoins.length === 0 && searchQuery !== "" ? (
-          <EmptyCoins
-            searchQuery={searchQuery}
-            onClearSearch={handleClearSearch}
-          />
-        ) : (
-          <CoinsList
-            coins={sortedCoins}
-            sortOrder={sortOrder}
-            sortBy={sortBy}
-            onSort={handleSort}
-          />
-        )}
-      </main>
-
-      <Footer />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
