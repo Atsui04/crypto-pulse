@@ -16,3 +16,11 @@ export async function getCoins() {
 
   return res.json();
 }
+
+export async function getCoin(id) {
+  const res = await fetch(`${BASE_URL}/coins/${id}`);
+
+  if (!res.ok) throw new Error("Wrong coin id");
+
+  return res.json();
+}

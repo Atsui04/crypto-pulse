@@ -66,11 +66,9 @@ const Home = () => {
       </div>
 
       {isLoading ? (
-        <div className="loader-container">
-          <Loader />
-        </div>
+        <Loader />
       ) : error ? (
-        <p>{error}</p>
+        <ErrorMessage>{error}</ErrorMessage>
       ) : sortedCoins.length === 0 && searchQuery !== "" ? (
         <EmptyCoins
           searchQuery={searchQuery}

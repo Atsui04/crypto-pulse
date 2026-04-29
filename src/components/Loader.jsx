@@ -1,5 +1,9 @@
 const Loader = () => {
-  return <div className="loader"></div>;
+  return (
+    <div className="center-container">
+      <div className="loader"></div>
+    </div>
+  );
 };
 
 export default Loader;

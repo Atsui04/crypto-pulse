@@ -67,6 +67,15 @@ main {
   flex: 1;
 }
 
+.center-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .search-container {
   width: 100%;
   display: flex;
@@ -123,15 +132,10 @@ main {
 }
 
 .empty-state {
-  flex: 1;
-  justify-content: center;
   text-align: center;
   padding: 4.8rem;
   font-size: 1.8rem;
   color: var(--secondary);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 1.6rem;
 }
 
@@ -181,6 +185,12 @@ main {
 
 .header-item.active {
   color: var(--accent);
+}
+
+.coin-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .coin {
@@ -263,6 +273,19 @@ main {
   font-weight: 600;
 }
 
+.error-message {
+  background-color: rgba(240, 128, 128, 0.1);
+  border: 1px solid lightcoral;
+  padding: 1.6rem 2.4rem;
+  border-radius: 12px;
+  color: lightcoral;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  animation: shake 0.4s ease-in-out;
+}
+
 .loader {
   width: 50px;
   aspect-ratio: 1;
@@ -273,13 +296,17 @@ main {
     l20-2 1.6s infinite linear;
 }
 
-.loader-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  width: 100%;
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 @keyframes l20-1 {
