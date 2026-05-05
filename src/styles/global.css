@@ -60,6 +60,7 @@ main {
 .container {
   width: 100%;
   max-width: 120rem;
+  padding: 2.4rem 3.2rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -80,6 +81,26 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.btn-back {
+  background: none;
+  border: 1px solid var(--surface-light);
+  color: var(--secondary);
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.4rem;
+  transition: all 0.2s;
+  align-self: flex-start;
+  margin-bottom: 2.4rem;
+}
+
+.btn-back:hover {
+  background-color: var(--surface-light);
+  color: var(--primary);
+  border-color: var(--accent);
 }
 
 .controls {
@@ -159,7 +180,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2.4rem 3.2rem;
 }
 
 .list-header,
@@ -271,6 +291,58 @@ main {
 
 .coin-price {
   font-weight: 600;
+}
+
+.coin-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+}
+
+.coin-page__block {
+  background-color: var(--surface);
+  border-radius: 15px;
+  padding: 2.4rem 3.2rem;
+}
+
+.coin-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.coin-hero__main {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.coin-hero__img {
+  width: 6.4rem;
+  height: 6.4rem;
+}
+
+.coin-hero__name {
+  font-size: 2rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.coin-hero__symbol {
+  font-size: inherit;
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+
+.coin-hero__rank {
+  font-size: 2rem;
+  background-color: var(--surface-light);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
 }
 
 .error-message {
@@ -435,5 +507,12 @@ main {
   .coin-item:nth-child(3),
   .header-item:nth-child(3) {
     display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .coin-hero {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
