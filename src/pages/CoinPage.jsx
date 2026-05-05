@@ -5,8 +5,11 @@ import { getCoin } from "../api/coinsApi";
 
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
+import Back from "../components/Back";
+import CoinDetails from "../components/CoinDetails";
 
 const CoinPage = () => {
+  const [coin, setCoin] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,11 +17,12 @@ const CoinPage = () => {
 
   useEffect(
     function () {
-      async function fetchPost() {
+      async function fetchCoin() {
         try {
           setIsLoading(true);
           const data = await getCoin(id);
 
+          setCoin(data);
           console.log(data);
         } catch (err) {
           setError(err.message);
@@ -27,14 +31,21 @@ const CoinPage = () => {
         }
       }
 
-      fetchPost();
+      fetchCoin();
     },
     [id],
   );
 
   return (
     <div className="container">
-      {isLoading ? <Loader /> : error ? <ErrorMessage error={error} /> : ""}
+      <Back />
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <ErrorMessage error={error} />
+      ) : (
+        <CoinDetails coin={coin} />
+      )}
     </div>
   );
 };
