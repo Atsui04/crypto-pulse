@@ -1,4 +1,4 @@
-const Hero = ({ name, symbol, image, rank }) => {
+const CoinHero = ({ name, symbol, image, rank }) => {
   return (
     <div className="coin-page__block coin-hero">
       <div className="coin-hero__main">
@@ -12,4 +12,4 @@ const Hero = ({ name, symbol, image, rank }) => {
   );
 };
 
-export default Hero;
+export default CoinHero;

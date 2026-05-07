@@ -1,4 +1,3 @@
-import Hero from "./Hero";
 import Info from "./Info";
 
 const CoinDetails = ({ coin }) => {
@@ -26,6 +25,7 @@ const CoinDetails = ({ coin }) => {
         image={image}
         price={price}
         rank={rank}
+        change24h={change24h}
       />
     </div>
   );

@@ -1,9 +1,9 @@
 import { Link } from "react-router";
+import formatPriceChange from "../utils/formatters";
 
 const Coin = ({ coin }) => {
   const change24h = coin.price_change_percentage_24h;
-  const isPositive = change24h > 0;
-  const changeClass = isPositive ? "coin-positive" : "coin-negative";
+  const { changeClass, formattedValue } = formatPriceChange(change24h);
 
   return (
     <Link to={`/coin/${coin.id}`} className="coin-link">
@@ -20,10 +20,7 @@ const Coin = ({ coin }) => {
         </div>
 
         <div className="coin-item">
-          <p className={`coin-change ${changeClass}`}>
-            {isPositive ? "+" : ""}
-            {change24h?.toFixed(2)}%
-          </p>
+          <p className={`coin-change ${changeClass}`}>{formattedValue}%</p>
         </div>
 
         <div className="coin-item">
