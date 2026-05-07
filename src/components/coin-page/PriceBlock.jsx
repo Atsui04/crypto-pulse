@@ -1,4 +1,4 @@
-import formatPriceChange from "../utils/formatters";
+import formatPriceChange from "../../utils/formatters";
 
 const PriceBlock = ({ price, change24h }) => {
   const { changeClass, formattedValue } = formatPriceChange(change24h);

@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import formatPriceChange from "../utils/formatters";
+import formatPriceChange from "../../utils/formatters";
 
 const Coin = ({ coin }) => {
   const change24h = coin.price_change_percentage_24h;

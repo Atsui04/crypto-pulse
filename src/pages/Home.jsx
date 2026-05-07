@@ -4,10 +4,10 @@ import { getCoins } from "../api/coinsApi";
 import sorting from "../utils/sorting";
 import filtering from "../utils/filtering";
 
-import CoinsList from "../components/CoinsList";
-import Loader from "../components/Loader";
-import Search from "../components/Search";
-import EmptyCoins from "../components/EmptyCoins";
+import CoinsList from "../components/coin-list/CoinsList";
+import Loader from "../components/ui/Loader";
+import Search from "../components/coin-list/Search";
+import EmptyCoins from "../components/coin-list/EmptyCoins";
 
 const Home = () => {
   const [coins, setCoins] = useState([]);

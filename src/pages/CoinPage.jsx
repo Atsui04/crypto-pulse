@@ -3,10 +3,10 @@ import { useParams } from "react-router";
 
 import { getCoin } from "../api/coinsApi";
 
-import Loader from "../components/Loader";
-import ErrorMessage from "../components/ErrorMessage";
-import Back from "../components/Back";
-import CoinDetails from "../components/CoinDetails";
+import Loader from "../components/ui/Loader";
+import ErrorMessage from "../components/ui/ErrorMessage";
+import Back from "../components/ui/Back";
+import CoinDetails from "../components/coin-page/CoinDetails";
 
 const CoinPage = () => {
   const [coin, setCoin] = useState(null);

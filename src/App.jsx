@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import AppLayout from "./components/AppLayout";
+import AppLayout from "./layout/AppLayout";
 import CoinPage from "./pages/CoinPage";
 import Home from "./pages/Home";
 
