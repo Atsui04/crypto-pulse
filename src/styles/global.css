@@ -5,6 +5,8 @@
   --primary: #eaecef;
   --secondary: #848e9c;
   --accent: #f3ba2f;
+
+  --font-main: "Inter", sans-serif;
 }
 
 * {
@@ -18,7 +20,10 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   letter-spacing: 1.5;
   background-color: var(--bg-color);
   color: var(--primary);
