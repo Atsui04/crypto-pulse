@@ -15,6 +15,7 @@ const CoinDetails = ({ coin }) => {
       market_cap: { usd: marketCap },
       total_volume: { usd: volume },
     },
+    links,
   } = coin;
 
   return (
@@ -26,6 +27,7 @@ const CoinDetails = ({ coin }) => {
         price={price}
         rank={rank}
         change24h={change24h}
+        links={links}
       />
     </div>
   );
