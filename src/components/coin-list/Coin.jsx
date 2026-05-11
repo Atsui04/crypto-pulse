@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import formatPriceChange from "../../utils/formatters";
+import { formatPriceChange, formatCurrency } from "../../utils/formatters";
 
 const Coin = ({ coin }) => {
   const change24h = coin.price_change_percentage_24h;
@@ -16,7 +16,7 @@ const Coin = ({ coin }) => {
         </div>
 
         <div className="coin-item">
-          <p className="coin-price">{coin.current_price.toLocaleString()}$</p>
+          <p className="coin-price">{formatCurrency(coin.current_price)}</p>
         </div>
 
         <div className="coin-item">
@@ -25,7 +25,7 @@ const Coin = ({ coin }) => {
 
         <div className="coin-item">
           <p className="coin-market-cap">
-            ${(coin.market_cap / 1000000).toFixed(0)}M
+            {formatCurrency(coin.market_cap, true)}
           </p>
         </div>
       </div>

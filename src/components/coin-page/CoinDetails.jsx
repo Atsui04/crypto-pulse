@@ -1,4 +1,5 @@
 import Info from "./Info";
+import MarketStats from "./MarketStats";
 
 const CoinDetails = ({ coin }) => {
   if (!coin) return null;
@@ -28,6 +29,11 @@ const CoinDetails = ({ coin }) => {
         rank={rank}
         change24h={change24h}
         links={links}
+      />
+      <MarketStats
+        description={description}
+        marketCap={marketCap}
+        volume={volume}
       />
     </div>
   );
