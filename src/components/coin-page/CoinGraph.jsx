@@ -78,7 +78,6 @@ const CoinGraph = () => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    resizeDelay: 0,
     scales: {
       x: {
         grid: { display: false },
@@ -87,19 +86,28 @@ const CoinGraph = () => {
           maxTicksLimit: 5,
           autoSkip: true,
           maxRotation: 0,
+          color: "rgba(255, 255, 255, 0.5)",
         },
       },
       y: {
         position: "right",
         grid: { color: "rgba(255, 255, 255, 0.05)" },
-        grace: "2%",
+        border: { display: false },
+        grace: "5%",
         ticks: {
           callback: (value) => formatCurrency(value, true),
           maxTicksLimit: 5,
-          mirror: true,
-          crossAlign: "near",
-          padding: 0,
+          color: "rgba(255, 255, 255, 0.5)",
+          padding: 8,
         },
+      },
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 10,
+        bottom: 0,
       },
     },
     elements: {
@@ -111,14 +119,6 @@ const CoinGraph = () => {
         callbacks: {
           label: (context) => `Price: ${formatCurrency(context.raw)}`,
         },
-      },
-    },
-    layout: {
-      padding: {
-        left: 0,
-        right: 0,
-        top: 15,
-        bottom: 0,
       },
     },
   };
