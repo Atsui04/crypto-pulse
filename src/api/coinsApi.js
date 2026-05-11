@@ -12,7 +12,7 @@ export async function getCoins() {
     },
   );
 
-  if (!res.ok) throw new Error("Failed to get coins");
+  if (!res.ok) throw new Error("Failed to fetch market data");
 
   return res.json();
 }
@@ -20,7 +20,17 @@ export async function getCoins() {
 export async function getCoin(id) {
   const res = await fetch(`${BASE_URL}/coins/${id}`);
 
-  if (!res.ok) throw new Error("Wrong coin id");
+  if (!res.ok) throw new Error("Failed to fetch market data");
+
+  return res.json();
+}
+
+export async function getCoinGraph(id, days = 7) {
+  const res = await fetch(
+    `${BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=${days}`,
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch market data");
 
   return res.json();
 }
