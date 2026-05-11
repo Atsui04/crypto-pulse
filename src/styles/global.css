@@ -384,7 +384,6 @@ main {
   background-color: var(--surface-light);
   padding: 0.4rem 0.8rem;
   border-radius: 4px;
-  /* align-self: center; */
 }
 
 .coin-value {
@@ -670,16 +669,18 @@ main {
     display: none;
   }
 
-  .coin-graph__chart {
-    height: 35rem;
+  .coin-graph {
+    padding: 2rem 1.6rem;
   }
 
-  .coin-graph {
-    padding: 1.2rem;
+  .coin-graph__chart {
+    height: 28rem;
+    width: 100%;
   }
 
   .coin-graph__header {
-    padding: 0 1.6rem;
+    padding: 0;
+    margin-bottom: 1rem;
   }
 }
 
