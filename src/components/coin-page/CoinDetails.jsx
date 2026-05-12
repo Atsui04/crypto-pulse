@@ -14,6 +14,8 @@ const CoinDetails = ({ coin }) => {
       current_price: { usd: price },
       price_change_percentage_24h: change24h,
       market_cap: { usd: marketCap },
+      circulating_supply: curSupply,
+      max_supply: maxSupply,
       total_volume: { usd: volume },
     },
     links,
@@ -31,8 +33,11 @@ const CoinDetails = ({ coin }) => {
         links={links}
       />
       <MarketStats
+        symbol={symbol}
         description={description}
         marketCap={marketCap}
+        curSupply={curSupply}
+        maxSupply={maxSupply}
         volume={volume}
       />
     </div>
