@@ -4,7 +4,7 @@ A modern, real-time cryptocurrency tracking web application. This project was de
 
 ## 🚀 Features
 
-- **Real-time Data:** Fetches live prices for Top-10 cryptocurrencies using the CoinGecko API.
+- **Real-time Data:** Fetches live prices for Top-100 cryptocurrencies using the CoinGecko API.
 - **Loading States:** Smooth user experience with a dedicated Loader component during data fetching.
 - **Responsive Design:** Dark-themed UI designed for clarity and modern aesthetics.
 - **API Security:** Implements environment variables (`.env`) to keep sensitive API keys secure.
@@ -54,6 +54,6 @@ A modern, real-time cryptocurrency tracking web application. This project was de
 
 ## 📈 Roadmap
 
-- **[ ] Search and filter functionality.**
-- **[ ] Detailed coin pages with interactive price charts (Chart.js).**
+- **[✅] Search and filter functionality.**
+- **[✅] Detailed coin pages with interactive price charts (Chart.js).**
 - **[ ] "Favorites" list with local storage persistence.**
