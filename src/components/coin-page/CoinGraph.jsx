@@ -138,11 +138,7 @@ const CoinGraph = () => {
       </div>
 
       <div className="coin-graph__chart">
-        {chartData.length > 0 ? (
-          <Line data={data} options={options} />
-        ) : (
-          <div className="loader"></div>
-        )}
+        <Line data={data} options={options} />
       </div>
     </div>
   );
