@@ -1,3 +1,4 @@
+import CoinDescription from "./CoinDescription";
 import CoinGraph from "./CoinGraph";
 import CoinStats from "./CoinStats";
 
@@ -19,6 +20,7 @@ const MarketStats = ({
         maxSupply={maxSupply}
         volume={volume}
       />
+      <CoinDescription description={description} />
     </div>
   );
 };

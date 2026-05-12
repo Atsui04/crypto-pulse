@@ -563,6 +563,35 @@ main {
   white-space: nowrap;
 }
 
+.coin-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.coin-description__title {
+  font-size: 1.8rem;
+}
+
+.coin-description__content {
+  max-height: 40rem;
+  font-size: 1.4rem;
+  white-space: pre-line;
+  line-height: 1.6;
+  overflow-y: auto;
+  padding-right: 1rem;
+  color: var(--secondary);
+}
+
+.coin-description__content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.coin-description__content::-webkit-scrollbar-thumb {
+  background: var(--surface-light);
+  border-radius: 10px;
+}
+
 /* ======================== */
 /* LOADER */
 /* ======================== */
@@ -753,12 +782,5 @@ main {
   .coin-graph__header {
     padding: 0;
     margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .coin-hero {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }

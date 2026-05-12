@@ -3,7 +3,7 @@ import { formatCompactNumber, formatCurrency } from "./../../utils/formatters";
 const CoinStats = ({ symbol, marketCap, curSupply, maxSupply, volume }) => {
   return (
     <div className="coin-page__block coin-stats">
-      <h3 className="coin-stats__title">Coin Stats</h3>
+      <h3 className="coin-stats__title">Stats</h3>
       <div className="coin-stats__list">
         <div className="coin-stats__item">
           <p className="coin-stats__label">Market Cap</p>

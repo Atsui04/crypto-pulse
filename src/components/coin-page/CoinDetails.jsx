@@ -8,7 +8,7 @@ const CoinDetails = ({ coin }) => {
     name,
     symbol,
     image,
-    description,
+    description: { en: description },
     market_cap_rank: rank,
     market_data: {
       current_price: { usd: price },
