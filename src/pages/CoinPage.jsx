@@ -23,7 +23,6 @@ const CoinPage = () => {
           const data = await getCoin(id);
 
           setCoin(data);
-          console.log(data);
         } catch (err) {
           setError(err.message);
         } finally {
@@ -39,12 +38,10 @@ const CoinPage = () => {
   return (
     <div className="container">
       <Back />
-      {isLoading ? (
-        <Loader />
-      ) : error ? (
+      {error ? (
         <ErrorMessage error={error} />
       ) : (
-        <CoinDetails coin={coin} />
+        <CoinDetails coin={coin} isLoading={isLoading} />
       )}
     </div>
   );
