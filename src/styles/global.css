@@ -604,8 +604,12 @@ main {
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
 
-.skeleton-graph {
+.coin-graph__skeleton {
   height: 45rem;
+}
+
+.coin-description__skeleton {
+  height: 48rem;
 }
 
 @keyframes skeleton-pulse {
@@ -757,8 +761,16 @@ main {
     height: 30rem;
   }
 
-  .skeleton-graph {
+  .coin-graph__skeleton {
     height: 30rem;
+  }
+
+  .coin-description__content {
+    max-height: 28rem;
+  }
+
+  .coin-description__skeleton {
+    height: 32rem;
   }
 }
 
@@ -775,6 +787,23 @@ main {
   .coin-item:nth-child(4),
   .header-item:nth-child(4) {
     display: none;
+  }
+
+  .coin-graph__chart {
+    height: 28rem;
+    width: 100%;
+  }
+
+  .coin-graph__skeleton {
+    height: 28rem;
+  }
+
+  .coin-description__content {
+    max-height: 25rem;
+  }
+
+  .coin-description__skeleton {
+    height: 30rem;
   }
 }
 
@@ -795,12 +824,20 @@ main {
   }
 
   .coin-graph__chart {
-    height: 28rem;
+    height: 25rem;
     width: 100%;
   }
 
-  .skeleton-graph {
-    height: 28rem;
+  .coin-graph__skeleton {
+    height: 25rem;
+  }
+
+  .coin-description__content {
+    max-height: 22rem;
+  }
+
+  .coin-description__skeleton {
+    height: 27rem;
   }
 
   .coin-graph__header {
