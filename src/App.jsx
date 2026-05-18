@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import AppLayout from "./layout/AppLayout";
 import CoinPage from "./pages/CoinPage";
 import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
       {
         path: "/coin/:id",
         element: <CoinPage />,
+      },
+      {
+        path: "/favorites",
+        element: <Favorites />,
       },
     ],
   },
