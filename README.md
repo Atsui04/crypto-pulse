@@ -56,4 +56,4 @@ A modern, real-time cryptocurrency tracking web application. This project was de
 
 - **[✅] Search and filter functionality.**
 - **[✅] Detailed coin pages with interactive price charts (Chart.js).**
-- **[ ] "Favorites" list with local storage persistence.**
+- **[✅] "Favorites" list with local storage persistence.**
