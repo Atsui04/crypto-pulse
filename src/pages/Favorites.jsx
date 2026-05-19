@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
 import { useFavoritesStore } from "../stores/useFavoritesStore";
 import { getCoins } from "../api/coinsApi";
 
@@ -11,29 +10,19 @@ import FavoritesEmpty from "../components/favorites-page/FavoritesEmpty";
 
 const Favorites = () => {
   const favorites = useFavoritesStore((state) => state.favorites);
+  const sortBy = useFavoritesStore((state) => state.sortBy);
+  const sortOrder = useFavoritesStore((state) => state.sortOrder);
+
+  const setSort = useFavoritesStore((state) => state.setSort);
 
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [sortBy, setSortBy] = useState("market_cap");
-  const [sortOrder, setSortOrder] = useState("desc");
 
   const sortedCoins = sorting(coins, sortBy, sortOrder);
 
-  function handleSort(newSortBy) {
-    if (sortBy === newSortBy) {
-      setSortOrder((prev) => (prev === "desc" ? "asc" : "desc"));
-    } else {
-      setSortBy(newSortBy);
-      setSortOrder("desc");
-    }
-  }
-
   useEffect(() => {
-    if (favorites.length === 0) {
-      setCoins([]);
-      return;
-    }
+    if (favorites.length === 0) return;
 
     async function fetchFavoriteCoins() {
       try {
@@ -71,7 +60,7 @@ const Favorites = () => {
           coins={sortedCoins}
           sortOrder={sortOrder}
           sortBy={sortBy}
-          onSort={handleSort}
+          onSort={setSort}
         />
       )}
     </main>
