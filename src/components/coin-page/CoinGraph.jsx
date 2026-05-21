@@ -16,6 +16,8 @@ import {
   Filler,
   Legend,
 } from "chart.js";
+import { useQuery } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 
 ChartJS.register(
   CategoryScale,
@@ -29,28 +31,27 @@ ChartJS.register(
 );
 
 const CoinGraph = () => {
-  const [chartData, setChartData] = useState([]);
   const [days, setDays] = useState(7);
 
   const { id } = useParams();
 
-  const labels = chartData.map((item) => formatTimestamp(item[0], days));
-  const values = chartData.map((item) => item[1]);
+  const {
+    data: graphData,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["coinGraph", id, days],
+    queryFn: () => getCoinGraph(id, days),
+    staleTime: 1000 * 60 * 3,
+  });
+
+  const prices = graphData?.prices || [];
+
+  const labels = prices.map((item) => formatTimestamp(item[0], days));
+  const values = prices.map((item) => item[1]);
 
   const isUp = values[0] < values[values.length - 1];
   const chartColor = isUp ? "#22c55e" : "#ef4444";
-
-  useEffect(
-    function () {
-      async function fetchGraph() {
-        const data = await getCoinGraph(id, days);
-        setChartData(data.prices);
-      }
-
-      fetchGraph();
-    },
-    [id, days],
-  );
 
   const timeframes = [
     { label: "1D", value: 1 },
@@ -131,6 +132,7 @@ const CoinGraph = () => {
             key={tf.label}
             className={`coin-graph__tab ${days === tf.value ? "active" : ""}`}
             onClick={() => setDays(tf.value)}
+            disabled={isPending}
           >
             {tf.label}
           </button>
@@ -138,7 +140,13 @@ const CoinGraph = () => {
       </div>
 
       <div className="coin-graph__chart">
-        <Line data={data} options={options} />
+        {isPending ? (
+          <Loader />
+        ) : error ? (
+          <p className="error-message">{error.message}</p>
+        ) : (
+          <Line data={data} options={options} />
+        )}
       </div>
     </div>
   );
