@@ -2,8 +2,8 @@ import CoinDetailsSkeleton from "../ui/CoinDetailsSkeleton";
 import Info from "./Info";
 import MarketStats from "./MarketStats";
 
-const CoinDetails = ({ coin, isLoading }) => {
-  if (isLoading) return <CoinDetailsSkeleton />;
+const CoinDetails = ({ coin, isPending }) => {
+  if (isPending) return <CoinDetailsSkeleton />;
   if (!coin) return null;
 
   const {

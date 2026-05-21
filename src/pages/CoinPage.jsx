@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { getCoin } from "../api/coinsApi";
@@ -9,38 +8,25 @@ import ErrorMessage from "../components/ui/ErrorMessage";
 import Back from "../components/ui/Back";
 import CoinDetails from "../components/coin-page/CoinDetails";
 import Save from "../components/ui/Save";
+import { useQuery } from "@tanstack/react-query";
 
 const CoinPage = () => {
-  const [coin, setCoin] = useState(null);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { id } = useParams();
 
   const favorites = useFavoritesStore((state) => state.favorites);
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
-  const { id } = useParams();
+  const isActive = favorites?.includes(id) || false;
 
-  const isActive = favorites.includes(id);
-
-  useEffect(
-    function () {
-      async function fetchCoin() {
-        try {
-          setIsLoading(true);
-          const data = await getCoin(id);
-
-          setCoin(data);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-
-      fetchCoin();
-    },
-    [id],
-  );
+  const {
+    data: coin = null,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["coin", id],
+    queryFn: () => getCoin(id),
+    staleTime: 1000 * 60 * 1,
+  });
 
   return (
     <div className="container">
@@ -49,9 +35,9 @@ const CoinPage = () => {
         <Save isActive={isActive} onClick={() => toggleFavorite(id)} />
       </div>
       {error ? (
-        <ErrorMessage error={error} />
+        <ErrorMessage error={error.message} />
       ) : (
-        <CoinDetails coin={coin} isLoading={isLoading} />
+        <CoinDetails coin={coin} isPending={isPending} />
       )}
     </div>
   );

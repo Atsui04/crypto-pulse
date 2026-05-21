@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useCoinsStore } from "../stores/useCoinsStore";
+import { getCoins } from "../api/coinsApi";
 
 import sorting from "../utils/sorting";
 import filtering from "../utils/filtering";
@@ -7,17 +10,22 @@ import CoinsList from "../components/home-page/CoinsList";
 import Loader from "../components/ui/Loader";
 import Search from "../components/home-page/Search";
 import EmptyCoins from "../components/home-page/EmptyCoins";
-import { useCoinsStore } from "../stores/useCoinsStore";
+import ErrorMessage from "../components/ui/ErrorMessage";
 
 const Home = () => {
-  const coins = useCoinsStore((state) => state.coins);
-  const isLoading = useCoinsStore((state) => state.isLoading);
-  const error = useCoinsStore((state) => state.error);
+  const {
+    data: coins = [],
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["marketCoins"],
+    queryFn: () => getCoins(),
+    staleTime: 1000 * 60 * 1,
+  });
+
   const sortBy = useCoinsStore((state) => state.sortBy);
   const sortOrder = useCoinsStore((state) => state.sortOrder);
-
   const setSort = useCoinsStore((state) => state.setSort);
-  const fetchCoins = useCoinsStore((state) => state.fetchCoins);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -32,23 +40,16 @@ const Home = () => {
     setSearchQuery("");
   }
 
-  useEffect(
-    function () {
-      fetchCoins();
-    },
-    [fetchCoins],
-  );
-
   return (
     <main className="container">
       <div className="controls">
         <Search searchQuery={searchQuery} onSearch={handleSearch} />
       </div>
 
-      {isLoading ? (
+      {isPending ? (
         <Loader />
       ) : error ? (
-        <ErrorMessage>{error}</ErrorMessage>
+        <ErrorMessage error={error.message} />
       ) : sortedCoins.length === 0 && searchQuery !== "" ? (
         <EmptyCoins
           searchQuery={searchQuery}

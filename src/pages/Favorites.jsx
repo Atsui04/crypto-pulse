@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useFavoritesStore } from "../stores/useFavoritesStore";
 import { getCoins } from "../api/coinsApi";
 
@@ -7,41 +6,27 @@ import CoinsList from "../components/home-page/CoinsList";
 import Loader from "../components/ui/Loader";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import FavoritesEmpty from "../components/favorites-page/FavoritesEmpty";
+import { useQuery } from "@tanstack/react-query";
 
 const Favorites = () => {
   const favorites = useFavoritesStore((state) => state.favorites);
+
   const sortBy = useFavoritesStore((state) => state.sortBy);
   const sortOrder = useFavoritesStore((state) => state.sortOrder);
-
   const setSort = useFavoritesStore((state) => state.setSort);
 
-  const [coins, setCoins] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const {
+    data: favoriteCoins = [],
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["favoriteCoins", favorites],
+    queryFn: () => getCoins(favorites.join(",")),
+    enabled: favorites.length > 0,
+    staleTime: 1000 * 60 * 1,
+  });
 
-  const sortedCoins = sorting(coins, sortBy, sortOrder);
-
-  useEffect(() => {
-    if (favorites.length === 0) return;
-
-    async function fetchFavoriteCoins() {
-      try {
-        setIsLoading(true);
-        setError("");
-
-        const idsString = favorites.join(",");
-        const data = await getCoins(idsString);
-
-        setCoins(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchFavoriteCoins();
-  }, [favorites]);
+  const sortedCoins = sorting(favoriteCoins || [], sortBy, sortOrder);
 
   if (favorites.length === 0) {
     return <FavoritesEmpty />;
@@ -51,10 +36,10 @@ const Favorites = () => {
     <main className="container favorites">
       <h1 className="favorites__header">Watchlist</h1>
 
-      {isLoading ? (
+      {isPending ? (
         <Loader />
       ) : error ? (
-        <ErrorMessage>{error}</ErrorMessage>
+        <ErrorMessage error={error.message} />
       ) : (
         <CoinsList
           coins={sortedCoins}
