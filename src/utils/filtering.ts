@@ -1,4 +1,9 @@
-export default function filtering(coins, searchQuery) {
+interface Coin {
+  name: string;
+  symbol: string;
+}
+
+export default function filtering(coins: Coin[], searchQuery: string): Coin[] {
   const query = searchQuery.trim().toLowerCase();
   if (!query) return coins;
 

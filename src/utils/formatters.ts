@@ -1,4 +1,4 @@
-export function formatPriceChange(change24h) {
+export function formatPriceChange(change24h: number) {
   if (!change24h)
     return { formattedValue: "0.00", changeClass: "", isPositive: false };
 
@@ -15,10 +15,10 @@ export function formatPriceChange(change24h) {
   };
 }
 
-export function formatCompactNumber(number) {
+export function formatCompactNumber(number: number) {
   if (number === null || number === undefined) return "N/A";
 
-  const options = {
+  const options: Intl.NumberFormatOptions = {
     notation: "compact",
     compactDisplay: "short",
     maximumFractionDigits: 2,
@@ -27,14 +27,14 @@ export function formatCompactNumber(number) {
   return new Intl.NumberFormat("en-US", options).format(number);
 }
 
-export function formatCurrency(number, isCompact = false) {
+export function formatCurrency(number: number, isCompact = false) {
   if (number === null || number === undefined) return "$0";
 
   if (isCompact) {
     return "$" + formatCompactNumber(number);
   }
 
-  const options = {
+  const options: Intl.NumberFormatOptions = {
     style: "currency",
     currency: "USD",
     minimumFractionDigits: number < 1 ? 4 : 2,
@@ -44,8 +44,8 @@ export function formatCurrency(number, isCompact = false) {
   return new Intl.NumberFormat("en-US", options).format(number);
 }
 
-export function formatTimestamp(timestamp, days) {
-  const options =
+export function formatTimestamp(timestamp: Date | number, days: number) {
+  const options: Intl.DateTimeFormatOptions =
     days > 1
       ? { day: "numeric", month: "short" }
       : { hour: "2-digit", minute: "2-digit" };
