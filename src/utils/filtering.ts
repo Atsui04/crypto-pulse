@@ -1,7 +1,4 @@
-interface Coin {
-  name: string;
-  symbol: string;
-}
+import { Coin } from "../types";
 
 export default function filtering(coins: Coin[], searchQuery: string): Coin[] {
   const query = searchQuery.trim().toLowerCase();

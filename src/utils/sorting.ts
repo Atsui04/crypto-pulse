@@ -1,20 +1,9 @@
-interface Coin {
-  name: string;
-  symbol: string;
-  market_cap_rank: number;
-  current_price: number;
-  price_change_percentage_24h: number;
-  market_cap: number;
-}
+import { Coin, SortBy, SortOrder } from "../types";
 
 export default function sorting(
   coins: Coin[],
-  sortBy:
-    | "market_cap_rank"
-    | "current_price"
-    | "price_change_percentage_24h"
-    | "market_cap",
-  sortOrder: "asc" | "desc",
+  sortBy: SortBy,
+  sortOrder: SortOrder,
 ): Coin[] {
   if (!sortBy) return coins;
 
