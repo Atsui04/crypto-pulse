@@ -1,6 +1,13 @@
 import { create } from "zustand";
+import { SortBy, SortOrder } from "../types";
 
-export const useCoinsStore = create((set, get) => ({
+interface CoinsState {
+  sortBy: SortBy;
+  sortOrder: SortOrder;
+  setSort: (newSortBy: SortBy) => void;
+}
+
+export const useCoinsStore = create<CoinsState>((set, get) => ({
   sortBy: "market_cap",
   sortOrder: "desc",
 

@@ -1,7 +1,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { SortBy, SortOrder } from "../types";
 
-export const useFavoritesStore = create(
+interface FavoritesState {
+  favorites: string[];
+  sortBy: SortBy;
+  sortOrder: SortOrder;
+  setSort: (newSortBy: SortBy) => void;
+  toggleFavorite: (coinId: string) => void;
+}
+
+export const useFavoritesStore = create<FavoritesState>()(
   persist(
     (set, get) => ({
       favorites: [],
