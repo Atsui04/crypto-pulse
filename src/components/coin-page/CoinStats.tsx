@@ -1,4 +1,4 @@
-import { formatCompactNumber, formatCurrency } from "./../../utils/formatters";
+import { formatCompactNumber, formatCurrency } from "../../utils/formatters";
 
 const CoinStats = ({ symbol, marketCap, curSupply, maxSupply, volume }) => {
   return (

@@ -1,7 +1,12 @@
 import { Link } from "react-router";
 import { formatPriceChange, formatCurrency } from "../../utils/formatters";
+import { Coin } from "../../types";
 
-const Coin = ({ coin }) => {
+interface CoinsListItemProps {
+  coin: Coin;
+}
+
+const CoinListItem = ({ coin }: CoinsListItemProps) => {
   const change24h = coin.price_change_percentage_24h;
   const { changeClass, formattedValue } = formatPriceChange(change24h);
 
@@ -33,4 +38,4 @@ const Coin = ({ coin }) => {
   );
 };
 
-export default Coin;
+export default CoinListItem;

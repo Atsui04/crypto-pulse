@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useCoinsStore } from "../stores/useCoinsStore";
 import { getCoins } from "../api/coinsApi";
@@ -32,7 +32,7 @@ const Home = () => {
   const filteredCoins = filtering(coins, searchQuery);
   const sortedCoins = sorting(filteredCoins, sortBy, sortOrder);
 
-  function handleSearch(e) {
+  function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     setSearchQuery(e.target.value);
   }
 

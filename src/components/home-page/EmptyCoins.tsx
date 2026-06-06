@@ -1,4 +1,9 @@
-const EmptyCoins = ({ searchQuery, onClearSearch }) => {
+interface EmptyCoinsProps {
+  searchQuery: string;
+  onClearSearch: () => void;
+}
+
+const EmptyCoins = ({ searchQuery, onClearSearch }: EmptyCoinsProps) => {
   return (
     <div className="center-container empty-state">
       <p>No coins found matching "{searchQuery}"</p>

@@ -1,4 +1,11 @@
-const Search = ({ searchQuery, onSearch }) => {
+import { ChangeEvent } from "react";
+
+interface SearchProps {
+  searchQuery: string;
+  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Search = ({ searchQuery, onSearch }: SearchProps) => {
   return (
     <div className="search-container">
       <label htmlFor="coin-search" className="visually-hidden">
@@ -10,7 +17,7 @@ const Search = ({ searchQuery, onSearch }) => {
         className="search"
         type="text"
         value={searchQuery}
-        onChange={(e) => onSearch(e)}
+        onChange={onSearch}
         spellCheck="false"
       />
     </div>
