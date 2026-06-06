@@ -1,4 +1,13 @@
-const CoinHero = ({ name, symbol, image, rank }) => {
+import { DetailedCoin } from "../../types";
+
+interface CoinHeroProps {
+  name: DetailedCoin["name"];
+  symbol: DetailedCoin["symbol"];
+  image: DetailedCoin["image"];
+  rank: DetailedCoin["market_cap_rank"];
+}
+
+const CoinHero = ({ name, symbol, image, rank }: CoinHeroProps) => {
   return (
     <div className="coin-page__block coin-hero">
       <div className="coin-hero__main">

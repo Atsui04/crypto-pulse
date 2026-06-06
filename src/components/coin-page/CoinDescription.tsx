@@ -1,4 +1,8 @@
-const CoinDescription = ({ description }) => {
+interface CoinDescriptionProps {
+  description: string;
+}
+
+const CoinDescription = ({ description }: CoinDescriptionProps) => {
   if (!description) return null;
 
   return (

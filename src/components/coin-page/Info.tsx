@@ -1,8 +1,29 @@
+import { DetailedCoin } from "../../types";
+
 import CoinHero from "./CoinHero";
 import CoinLinks from "./CoinLinks";
 import PriceBlock from "./PriceBlock";
 
-const Info = ({ name, symbol, image, price, rank, change24h, links }) => {
+interface InfoProps {
+  name: DetailedCoin["name"];
+  symbol: DetailedCoin["symbol"];
+  image: DetailedCoin["image"];
+  rank: DetailedCoin["market_cap_rank"];
+  links: DetailedCoin["links"];
+
+  price: number;
+  change24h: number;
+}
+
+const Info = ({
+  name,
+  symbol,
+  image,
+  price,
+  rank,
+  change24h,
+  links,
+}: InfoProps) => {
   return (
     <div className="coin-page__info">
       <CoinHero name={name} symbol={symbol} image={image} rank={rank} />

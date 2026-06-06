@@ -1,4 +1,9 @@
-const Save = ({ isActive, onClick }) => {
+interface SaveProps {
+  isActive: boolean;
+  onClick: () => void;
+}
+
+const Save = ({ isActive, onClick }: SaveProps) => {
   return (
     <button
       className={`btn-favorite ${isActive ? "btn-favorite--active" : ""}`}

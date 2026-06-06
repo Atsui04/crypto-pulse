@@ -1,6 +1,22 @@
+import { DetailedCoin } from "../../types";
 import { formatCompactNumber, formatCurrency } from "../../utils/formatters";
 
-const CoinStats = ({ symbol, marketCap, curSupply, maxSupply, volume }) => {
+interface CoinStatsProps {
+  symbol: DetailedCoin["symbol"];
+
+  marketCap: DetailedCoin["market_data"]["market_cap"]["usd"];
+  curSupply: DetailedCoin["market_data"]["circulating_supply"];
+  maxSupply: DetailedCoin["market_data"]["max_supply"];
+  volume: DetailedCoin["market_data"]["total_volume"]["usd"];
+}
+
+const CoinStats = ({
+  symbol,
+  marketCap,
+  curSupply,
+  maxSupply,
+  volume,
+}: CoinStatsProps) => {
   return (
     <div className="coin-page__block coin-stats">
       <h3 className="coin-stats__title">Stats</h3>

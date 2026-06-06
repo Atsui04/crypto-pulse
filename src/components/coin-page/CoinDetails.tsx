@@ -1,9 +1,17 @@
+import { DetailedCoin } from "../../types";
+
 import CoinDetailsSkeleton from "../ui/CoinDetailsSkeleton";
 import Info from "./Info";
 import MarketStats from "./MarketStats";
 
-const CoinDetails = ({ coin, isPending }) => {
+interface CoinDetailsProps {
+  coin: DetailedCoin | null;
+  isPending: boolean;
+}
+
+const CoinDetails = ({ coin, isPending }: CoinDetailsProps) => {
   if (isPending) return <CoinDetailsSkeleton />;
+
   if (!coin) return null;
 
   const {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Coin } from "../types";
+import { Coin, CoinGraphResponse } from "../types";
 
 const BASE_URL = "https://api.coingecko.com/api/v3";
 
@@ -32,7 +32,10 @@ export async function getCoin(id: string) {
   return res.data;
 }
 
-export async function getCoinGraph(id: string, days = 7) {
+export async function getCoinGraph(
+  id: string,
+  days: number,
+): Promise<CoinGraphResponse> {
   const res = await axios.get<any>(`${BASE_URL}/coins/${id}/market_chart`, {
     headers: {
       accept: "application/json",

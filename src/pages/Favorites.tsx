@@ -1,12 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
 import { useFavoritesStore } from "../stores/useFavoritesStore";
 import { getCoins } from "../api/coinsApi";
 
 import sorting from "../utils/sorting";
+
 import CoinsList from "../components/home-page/CoinsList";
 import Loader from "../components/ui/Loader";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import FavoritesEmpty from "../components/favorites-page/FavoritesEmpty";
-import { useQuery } from "@tanstack/react-query";
 
 const Favorites = () => {
   const favorites = useFavoritesStore((state) => state.favorites);
@@ -26,7 +27,7 @@ const Favorites = () => {
     staleTime: 1000 * 60 * 1,
   });
 
-  const sortedCoins = sorting(favoriteCoins || [], sortBy, sortOrder);
+  const sortedCoins = sorting(favoriteCoins, sortBy, sortOrder);
 
   if (favorites.length === 0) {
     return <FavoritesEmpty />;

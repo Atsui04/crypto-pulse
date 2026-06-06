@@ -1,6 +1,11 @@
 import { formatCurrency, formatPriceChange } from "../../utils/formatters";
 
-const PriceBlock = ({ price, change24h }) => {
+interface PriceBlockProps {
+  price: number;
+  change24h: number;
+}
+
+const PriceBlock = ({ price, change24h }: PriceBlockProps) => {
   const { changeClass, formattedValue } = formatPriceChange(change24h);
 
   return (

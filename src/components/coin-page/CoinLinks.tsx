@@ -1,7 +1,21 @@
-const CoinLinks = ({ links }) => {
+import { DetailedCoin } from "../../types";
+
+interface CoinLinksProps {
+  links: DetailedCoin["links"];
+}
+
+const CoinLinks = ({ links }: CoinLinksProps) => {
   const website = links?.homepage?.[0];
   const explorer = links?.blockchain_site?.[0];
   const reddit = links?.subreddit_url;
+
+  const getHostname = (url: string) => {
+    try {
+      return url ? new URL(url).hostname : "";
+    } catch (e) {
+      return url;
+    }
+  };
 
   return (
     <div className="coin-page__block coin-links">
@@ -16,7 +30,7 @@ const CoinLinks = ({ links }) => {
               rel="noreferrer"
               className="coin-links__link"
             >
-              {new URL(website).hostname}
+              {getHostname(website)}
             </a>
           </div>
         )}
@@ -29,7 +43,7 @@ const CoinLinks = ({ links }) => {
               rel="noreferrer"
               className="coin-links__link"
             >
-              {new URL(explorer).hostname}
+              {getHostname(explorer)}
             </a>
           </div>
         )}
@@ -42,7 +56,7 @@ const CoinLinks = ({ links }) => {
               rel="noreferrer"
               className="coin-links__link"
             >
-              {new URL(reddit).hostname}
+              {getHostname(reddit)}
             </a>
           </div>
         )}

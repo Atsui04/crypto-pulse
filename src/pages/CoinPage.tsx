@@ -1,22 +1,28 @@
 import { useParams } from "react-router";
-
-import { getCoin } from "../api/coinsApi";
+import { useQuery } from "@tanstack/react-query";
 import { useFavoritesStore } from "../stores/useFavoritesStore";
+import { getCoin } from "../api/coinsApi";
 
-import Loader from "../components/ui/Loader";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import Back from "../components/ui/Back";
 import CoinDetails from "../components/coin-page/CoinDetails";
 import Save from "../components/ui/Save";
-import { useQuery } from "@tanstack/react-query";
 
 const CoinPage = () => {
   const { id } = useParams();
 
+  if (!id) {
+    return (
+      <main className="container">
+        <ErrorMessage error="Coin ID is missing in the URL" />
+      </main>
+    );
+  }
+
   const favorites = useFavoritesStore((state) => state.favorites);
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
 
-  const isActive = favorites?.includes(id) || false;
+  const isActive = favorites.includes(id) || false;
 
   const {
     data: coin = null,
@@ -29,7 +35,7 @@ const CoinPage = () => {
   });
 
   return (
-    <div className="container">
+    <main className="container">
       <div className="coin-page__item">
         <Back />
         <Save isActive={isActive} onClick={() => toggleFavorite(id)} />
@@ -39,7 +45,7 @@ const CoinPage = () => {
       ) : (
         <CoinDetails coin={coin} isPending={isPending} />
       )}
-    </div>
+    </main>
   );
 };
 
