@@ -3,6 +3,7 @@ import AppLayout from "./layout/AppLayout";
 import CoinPage from "./pages/CoinPage";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -11,12 +12,16 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       {
-        path: "/coin/:id",
+        path: "coin/:id",
         element: <CoinPage />,
       },
       {
-        path: "/favorites",
+        path: "favorites",
         element: <Favorites />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
