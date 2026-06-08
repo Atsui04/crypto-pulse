@@ -1,3 +1,4 @@
+import { CurrencyCode } from "../../constants";
 import { DetailedCoin } from "../../types";
 
 import CoinHero from "./CoinHero";
@@ -5,6 +6,7 @@ import CoinLinks from "./CoinLinks";
 import PriceBlock from "./PriceBlock";
 
 interface InfoProps {
+  currency: CurrencyCode;
   name: DetailedCoin["name"];
   symbol: DetailedCoin["symbol"];
   image: DetailedCoin["image"];
@@ -16,6 +18,7 @@ interface InfoProps {
 }
 
 const Info = ({
+  currency,
   name,
   symbol,
   image,
@@ -27,7 +30,7 @@ const Info = ({
   return (
     <div className="coin-page__info">
       <CoinHero name={name} symbol={symbol} image={image} rank={rank} />
-      <PriceBlock price={price} change24h={change24h} />
+      <PriceBlock price={price} change24h={change24h} currency={currency} />
       <CoinLinks links={links} />
     </div>
   );

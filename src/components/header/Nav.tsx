@@ -1,6 +1,8 @@
 import { NavLink } from "react-router";
 import { useFavoritesStore } from "../../stores/useFavoritesStore";
 
+import CurrencySelect from "./CurrencySelect";
+
 const Nav = () => {
   const favorites = useFavoritesStore((state) => state.favorites);
 
@@ -19,6 +21,9 @@ const Nav = () => {
               <span className="nav__badge">{favorites.length}</span>
             )}
           </NavLink>
+        </li>
+        <li>
+          <CurrencySelect />
         </li>
       </ul>
     </nav>

@@ -13,13 +13,15 @@ import EmptyCoins from "../components/home-page/EmptyCoins";
 import ErrorMessage from "../components/ui/ErrorMessage";
 
 const Home = () => {
+  const currency = useCoinsStore((state) => state.currency);
+
   const {
     data: coins = [],
     isPending,
     error,
   } = useQuery({
-    queryKey: ["marketCoins"],
-    queryFn: () => getCoins(),
+    queryKey: ["marketCoins", currency],
+    queryFn: () => getCoins(currency),
     staleTime: 1000 * 60 * 1,
   });
 
@@ -58,6 +60,7 @@ const Home = () => {
       ) : (
         <CoinsList
           coins={sortedCoins}
+          currency={currency}
           sortOrder={sortOrder}
           sortBy={sortBy}
           onSort={setSort}

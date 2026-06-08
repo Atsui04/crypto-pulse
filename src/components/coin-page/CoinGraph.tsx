@@ -19,6 +19,7 @@ import {
 } from "chart.js";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../ui/Loader";
+import { CurrencyCode } from "../../constants";
 
 ChartJS.register(
   CategoryScale,
@@ -31,7 +32,11 @@ ChartJS.register(
   Legend,
 );
 
-const CoinGraph = () => {
+interface CoinGraphProps {
+  currency: CurrencyCode;
+}
+
+const CoinGraph = ({ currency }: CoinGraphProps) => {
   const [days, setDays] = useState<number>(7);
 
   const { id } = useParams();
@@ -43,8 +48,8 @@ const CoinGraph = () => {
     isPending,
     error,
   } = useQuery({
-    queryKey: ["coinGraph", id, days],
-    queryFn: () => getCoinGraph(id, days),
+    queryKey: ["coinGraph", id, days, currency],
+    queryFn: () => getCoinGraph(id, days, currency),
     staleTime: 1000 * 60 * 3,
   });
 
@@ -100,7 +105,7 @@ const CoinGraph = () => {
         grace: "5%",
         ticks: {
           callback: (value: string | number) =>
-            formatCurrency(Number(value), true),
+            formatCurrency(Number(value), currency, true),
           maxTicksLimit: 5,
           color: "rgba(255, 255, 255, 0.5)",
           padding: 8,
@@ -122,7 +127,8 @@ const CoinGraph = () => {
       legend: { display: false },
       tooltip: {
         callbacks: {
-          label: (context) => `Price: ${formatCurrency(Number(context.raw))}`,
+          label: (context) =>
+            `Price: ${formatCurrency(Number(context.raw), currency)}`,
         },
       },
     },

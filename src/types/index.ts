@@ -30,14 +30,14 @@ export interface DetailedCoin {
   };
   market_data: {
     current_price: {
-      usd: number;
+      [key: string]: number;
     };
     market_cap: {
-      usd: number;
+      [key: string]: number;
     };
     price_change_percentage_24h: number;
     total_volume: {
-      usd: number;
+      [key: string]: number;
     };
     circulating_supply: number;
     max_supply: number | null;

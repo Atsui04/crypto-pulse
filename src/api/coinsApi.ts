@@ -1,16 +1,18 @@
 import axios from "axios";
 import { Coin, CoinGraphResponse } from "../types";
+import { BASE_URL, CurrencyCode } from "../constants";
 
-const BASE_URL = "https://api.coingecko.com/api/v3";
-
-export async function getCoins(ids = ""): Promise<Coin[]> {
+export async function getCoins(
+  currency: CurrencyCode,
+  ids = "",
+): Promise<Coin[]> {
   const res = await axios.get<Coin[]>(`${BASE_URL}/coins/markets`, {
     headers: {
       accept: "application/json",
       "x-cg-demo-api-key": import.meta.env.VITE_COINGECKO_API_KEY,
     },
     params: {
-      vs_currency: "usd",
+      vs_currency: currency,
       order: "market_cap_desc",
       per_page: 100,
       page: 1,
@@ -35,6 +37,7 @@ export async function getCoin(id: string) {
 export async function getCoinGraph(
   id: string,
   days: number,
+  currency: CurrencyCode,
 ): Promise<CoinGraphResponse> {
   const res = await axios.get<any>(`${BASE_URL}/coins/${id}/market_chart`, {
     headers: {
@@ -42,7 +45,7 @@ export async function getCoinGraph(
       "x-cg-demo-api-key": import.meta.env.VITE_COINGECKO_API_KEY,
     },
     params: {
-      vs_currency: "usd",
+      vs_currency: currency,
       days,
     },
   });

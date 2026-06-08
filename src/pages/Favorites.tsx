@@ -8,8 +8,10 @@ import CoinsList from "../components/home-page/CoinsList";
 import Loader from "../components/ui/Loader";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import FavoritesEmpty from "../components/favorites-page/FavoritesEmpty";
+import { useCoinsStore } from "../stores/useCoinsStore";
 
 const Favorites = () => {
+  const currency = useCoinsStore((state) => state.currency);
   const favorites = useFavoritesStore((state) => state.favorites);
 
   const sortBy = useFavoritesStore((state) => state.sortBy);
@@ -21,8 +23,8 @@ const Favorites = () => {
     isPending,
     error,
   } = useQuery({
-    queryKey: ["favoriteCoins", favorites],
-    queryFn: () => getCoins(favorites.join(",")),
+    queryKey: ["favoriteCoins", favorites, currency],
+    queryFn: () => getCoins(currency, favorites.join(",")),
     enabled: favorites.length > 0,
     staleTime: 1000 * 60 * 1,
   });
@@ -44,6 +46,7 @@ const Favorites = () => {
       ) : (
         <CoinsList
           coins={sortedCoins}
+          currency={currency}
           sortOrder={sortOrder}
           sortBy={sortBy}
           onSort={setSort}

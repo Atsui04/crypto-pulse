@@ -1,12 +1,14 @@
 import { Link } from "react-router";
 import { formatPriceChange, formatCurrency } from "../../utils/formatters";
 import { Coin } from "../../types";
+import { CurrencyCode } from "../../constants";
 
 interface CoinsListItemProps {
   coin: Coin;
+  currency: CurrencyCode;
 }
 
-const CoinListItem = ({ coin }: CoinsListItemProps) => {
+const CoinListItem = ({ coin, currency }: CoinsListItemProps) => {
   const change24h = coin.price_change_percentage_24h;
   const { changeClass, formattedValue } = formatPriceChange(change24h);
 
@@ -21,7 +23,9 @@ const CoinListItem = ({ coin }: CoinsListItemProps) => {
         </div>
 
         <div className="coin-item">
-          <p className="coin-price">{formatCurrency(coin.current_price)}</p>
+          <p className="coin-price">
+            {formatCurrency(coin.current_price, currency)}
+          </p>
         </div>
 
         <div className="coin-item">
@@ -30,7 +34,7 @@ const CoinListItem = ({ coin }: CoinsListItemProps) => {
 
         <div className="coin-item">
           <p className="coin-market-cap">
-            {formatCurrency(coin.market_cap, true)}
+            {formatCurrency(coin.market_cap, currency, true)}
           </p>
         </div>
       </div>

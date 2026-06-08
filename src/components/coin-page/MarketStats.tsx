@@ -1,9 +1,11 @@
+import { CurrencyCode } from "../../constants";
 import { DetailedCoin } from "../../types";
 import CoinDescription from "./CoinDescription";
 import CoinGraph from "./CoinGraph";
 import CoinStats from "./CoinStats";
 
 interface MarketStatsProps {
+  currency: CurrencyCode;
   symbol: DetailedCoin["symbol"];
   description: string;
 
@@ -14,6 +16,7 @@ interface MarketStatsProps {
 }
 
 const MarketStats = ({
+  currency,
   symbol,
   description,
   marketCap,
@@ -23,8 +26,9 @@ const MarketStats = ({
 }: MarketStatsProps) => {
   return (
     <div className="coin-page__stats">
-      <CoinGraph />
+      <CoinGraph currency={currency} />
       <CoinStats
+        currency={currency}
         symbol={symbol}
         marketCap={marketCap}
         curSupply={curSupply}

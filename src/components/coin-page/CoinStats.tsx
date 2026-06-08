@@ -1,7 +1,9 @@
+import { CurrencyCode } from "../../constants";
 import { DetailedCoin } from "../../types";
 import { formatCompactNumber, formatCurrency } from "../../utils/formatters";
 
 interface CoinStatsProps {
+  currency: CurrencyCode;
   symbol: DetailedCoin["symbol"];
 
   marketCap: DetailedCoin["market_data"]["market_cap"]["usd"];
@@ -11,6 +13,7 @@ interface CoinStatsProps {
 }
 
 const CoinStats = ({
+  currency,
   symbol,
   marketCap,
   curSupply,
@@ -23,19 +26,21 @@ const CoinStats = ({
       <div className="coin-stats__list">
         <div className="coin-stats__item">
           <p className="coin-stats__label">Market Cap</p>
-          <p className="coin-stats__value">{formatCurrency(marketCap, true)}</p>
+          <p className="coin-stats__value">
+            {formatCurrency(marketCap, currency, true)}
+          </p>
         </div>
         <div className="coin-stats__item">
           <p className="coin-stats__label">Current Supply</p>
           <p className="coin-stats__value">
-            {formatCompactNumber(curSupply)} {symbol.toUpperCase()}
+            {formatCompactNumber(curSupply, currency)} {symbol.toUpperCase()}
           </p>
         </div>
         <div className="coin-stats__item">
           <p className="coin-stats__label">Max Supply</p>
           {maxSupply ? (
             <p className="coin-stats__value">
-              {formatCompactNumber(maxSupply)} {symbol.toUpperCase()}
+              {formatCompactNumber(maxSupply, currency)} {symbol.toUpperCase()}
             </p>
           ) : (
             <p className="coin-stats__value">Unlimited</p>
@@ -43,7 +48,9 @@ const CoinStats = ({
         </div>
         <div className="coin-stats__item">
           <p className="coin-stats__label">Total Volume</p>
-          <p className="coin-stats__value">{formatCurrency(volume, true)}</p>
+          <p className="coin-stats__value">
+            {formatCurrency(volume, currency, true)}
+          </p>
         </div>
       </div>
     </div>

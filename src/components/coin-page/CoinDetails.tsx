@@ -1,3 +1,4 @@
+import { useCoinsStore } from "../../stores/useCoinsStore";
 import { DetailedCoin } from "../../types";
 
 import CoinDetailsSkeleton from "../ui/CoinDetailsSkeleton";
@@ -10,6 +11,8 @@ interface CoinDetailsProps {
 }
 
 const CoinDetails = ({ coin, isPending }: CoinDetailsProps) => {
+  const currency = useCoinsStore((state) => state.currency);
+
   if (isPending) return <CoinDetailsSkeleton />;
 
   if (!coin) return null;
@@ -21,12 +24,12 @@ const CoinDetails = ({ coin, isPending }: CoinDetailsProps) => {
     description: { en: description },
     market_cap_rank: rank,
     market_data: {
-      current_price: { usd: price },
+      current_price: { [currency]: price },
       price_change_percentage_24h: change24h,
-      market_cap: { usd: marketCap },
+      market_cap: { [currency]: marketCap },
       circulating_supply: curSupply,
       max_supply: maxSupply,
-      total_volume: { usd: volume },
+      total_volume: { [currency]: volume },
     },
     links,
   } = coin;
@@ -34,6 +37,7 @@ const CoinDetails = ({ coin, isPending }: CoinDetailsProps) => {
   return (
     <div className="coin-page">
       <Info
+        currency={currency}
         name={name}
         symbol={symbol}
         image={image}
@@ -43,6 +47,7 @@ const CoinDetails = ({ coin, isPending }: CoinDetailsProps) => {
         links={links}
       />
       <MarketStats
+        currency={currency}
         symbol={symbol}
         description={description}
         marketCap={marketCap}
