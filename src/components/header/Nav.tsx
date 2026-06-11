@@ -25,13 +25,12 @@ const Nav = () => {
             )}
           </NavLink>
         </li>
-        <li>
-          <CurrencySelect />
-        </li>
-        <li>
-          <LanguageToggle />
-        </li>
       </ul>
+
+      <div className="header__actions">
+        <CurrencySelect />
+        <LanguageToggle />
+      </div>
     </nav>
   );
 };
