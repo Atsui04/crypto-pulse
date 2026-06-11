@@ -1,11 +1,14 @@
 import { CurrencyCode } from "../../constants";
 import { SortBy, SortOrder, Coin } from "../../types";
+
+import Pagination from "../ui/Pagination";
 import CoinListItem from "./CoinListItem";
 import CoinsListHeader from "./CoinsListHeader";
 
 interface CoinsListProps {
   coins: Coin[];
   currency: CurrencyCode;
+  page?: number;
   sortOrder: SortOrder;
   sortBy: SortBy;
   onSort: (newSortBy: SortBy) => void;
@@ -14,6 +17,7 @@ interface CoinsListProps {
 const CoinsList = ({
   coins,
   currency,
+  page,
   sortBy,
   sortOrder,
   onSort,
@@ -25,6 +29,8 @@ const CoinsList = ({
       {coins.map((coin) => (
         <CoinListItem coin={coin} key={coin.id} currency={currency} />
       ))}
+
+      {page && <Pagination page={page} />}
     </div>
   );
 };

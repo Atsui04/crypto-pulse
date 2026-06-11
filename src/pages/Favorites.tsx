@@ -9,6 +9,7 @@ import Loader from "../components/ui/Loader";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import FavoritesEmpty from "../components/favorites-page/FavoritesEmpty";
 import { useCoinsStore } from "../stores/useCoinsStore";
+import { useTranslation } from "react-i18next";
 
 const Favorites = () => {
   const currency = useCoinsStore((state) => state.currency);
@@ -18,13 +19,15 @@ const Favorites = () => {
   const sortOrder = useFavoritesStore((state) => state.sortOrder);
   const setSort = useFavoritesStore((state) => state.setSort);
 
+  const { t } = useTranslation();
+
   const {
     data: favoriteCoins = [],
     isPending,
     error,
   } = useQuery({
     queryKey: ["favoriteCoins", favorites, currency],
-    queryFn: () => getCoins(currency, favorites.join(",")),
+    queryFn: () => getCoins(currency, 1, favorites.join(",")),
     enabled: favorites.length > 0,
     staleTime: 1000 * 60 * 1,
   });
@@ -37,7 +40,7 @@ const Favorites = () => {
 
   return (
     <main className="container favorites">
-      <h1 className="favorites__header">Watchlist</h1>
+      <h1 className="favorites__header">{t("favorites.header")}</h1>
 
       {isPending ? (
         <Loader />

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { DetailedCoin } from "../../types";
 
 interface CoinLinksProps {
@@ -5,6 +6,8 @@ interface CoinLinksProps {
 }
 
 const CoinLinks = ({ links }: CoinLinksProps) => {
+  const { t } = useTranslation();
+
   const website = links?.homepage?.[0];
   const explorer = links?.blockchain_site?.[0];
   const reddit = links?.subreddit_url;
@@ -19,11 +22,11 @@ const CoinLinks = ({ links }: CoinLinksProps) => {
 
   return (
     <div className="coin-page__block coin-links">
-      <h3 className="coin-links__title">Links</h3>
+      <h3 className="coin-links__title">{t("coin.links.text")}</h3>
       <div className="coin-links__list">
         {website && (
           <div className="coin-links__item">
-            <span className="coin-links__label">Website</span>
+            <span className="coin-links__label">{t("coin.links.website")}</span>
             <a
               href={website}
               target="_blank"
@@ -36,7 +39,9 @@ const CoinLinks = ({ links }: CoinLinksProps) => {
         )}
         {explorer && (
           <div className="coin-links__item">
-            <span className="coin-links__label">Explorer</span>
+            <span className="coin-links__label">
+              {t("coin.links.explorer")}
+            </span>
             <a
               href={explorer}
               target="_blank"
@@ -49,7 +54,7 @@ const CoinLinks = ({ links }: CoinLinksProps) => {
         )}
         {reddit && (
           <div className="coin-links__item">
-            <span className="coin-links__label">Reddit</span>
+            <span className="coin-links__label">{t("coin.links.reddit")}</span>
             <a
               href={reddit}
               target="_blank"

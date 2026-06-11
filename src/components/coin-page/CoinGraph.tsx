@@ -20,6 +20,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../ui/Loader";
 import { CurrencyCode } from "../../constants";
+import { useTranslation } from "react-i18next";
 
 ChartJS.register(
   CategoryScale,
@@ -39,6 +40,8 @@ interface CoinGraphProps {
 const CoinGraph = ({ currency }: CoinGraphProps) => {
   const [days, setDays] = useState<number>(7);
 
+  const { i18n, t } = useTranslation();
+
   const { id } = useParams();
 
   if (!id) return null;
@@ -55,24 +58,26 @@ const CoinGraph = ({ currency }: CoinGraphProps) => {
 
   const prices = graphData?.prices || [];
 
-  const labels = prices.map((item) => formatTimestamp(item[0], days));
+  const labels = prices.map((item) =>
+    formatTimestamp(item[0], days, i18n.language),
+  );
   const values = prices.map((item) => item[1]);
 
   const isUp = values[0] < values[values.length - 1];
   const chartColor = isUp ? "#22c55e" : "#ef4444";
 
   const timeframes = [
-    { label: "1D", value: 1 },
-    { label: "7D", value: 7 },
-    { label: "1M", value: 30 },
-    { label: "3M", value: 90 },
+    { label: t("graph.days.1D"), value: 1 },
+    { label: t("graph.days.7D"), value: 7 },
+    { label: t("graph.days.1M"), value: 30 },
+    { label: t("graph.days.3M"), value: 90 },
   ];
 
   const data = {
     labels,
     datasets: [
       {
-        label: "Price",
+        label: t("headers.price"),
         data: values,
         borderColor: chartColor,
         tension: 0.1,
@@ -128,7 +133,7 @@ const CoinGraph = ({ currency }: CoinGraphProps) => {
       tooltip: {
         callbacks: {
           label: (context) =>
-            `Price: ${formatCurrency(Number(context.raw), currency)}`,
+            `${t("headers.price")}: ${formatCurrency(Number(context.raw), currency)}`,
         },
       },
     },

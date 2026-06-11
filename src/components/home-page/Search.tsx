@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { useTranslation } from "react-i18next";
 
 interface SearchProps {
   searchQuery: string;
@@ -6,6 +7,8 @@ interface SearchProps {
 }
 
 const Search = ({ searchQuery, onSearch }: SearchProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className="search-container">
       <label htmlFor="coin-search" className="visually-hidden">
@@ -19,6 +22,7 @@ const Search = ({ searchQuery, onSearch }: SearchProps) => {
         value={searchQuery}
         onChange={onSearch}
         spellCheck="false"
+        placeholder={t("search.placeholder")}
       />
     </div>
   );

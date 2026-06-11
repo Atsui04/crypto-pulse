@@ -50,11 +50,22 @@ export function formatCurrency(
   return new Intl.NumberFormat("en-US", options).format(number);
 }
 
-export function formatTimestamp(timestamp: Date | number, days: number) {
-  const options: Intl.DateTimeFormatOptions =
-    days > 1
-      ? { day: "numeric", month: "short" }
-      : { hour: "2-digit", minute: "2-digit" };
+export function formatTimestamp(
+  timestamp: Date | number,
+  days: number,
+  lang: string = "en",
+) {
+  const date = new Date(timestamp);
 
-  return new Intl.DateTimeFormat("en-US", options).format(timestamp);
+  if (days === 1) {
+    return new Intl.DateTimeFormat(lang, {
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(date);
+  }
+
+  return new Intl.DateTimeFormat(lang, {
+    day: "numeric",
+    month: "short",
+  }).format(date);
 }

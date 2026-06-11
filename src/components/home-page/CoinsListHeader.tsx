@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { SortBy, SortOrder } from "../../types";
 import CoinsListHeaderItem from "./CoinsListHeaderItem";
 
@@ -12,6 +13,8 @@ const CoinsListHeader = ({
   onSort,
   sortOrder,
 }: CoinsListHeaderProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className="list-header">
       <CoinsListHeaderItem
@@ -20,7 +23,7 @@ const CoinsListHeader = ({
         sortKey="market_cap_rank"
         onSort={onSort}
       >
-        Coin
+        {t("headers.coin")}
       </CoinsListHeaderItem>
 
       <CoinsListHeaderItem
@@ -29,7 +32,7 @@ const CoinsListHeader = ({
         sortKey="current_price"
         onSort={onSort}
       >
-        Price
+        {t("headers.price")}
       </CoinsListHeaderItem>
 
       <CoinsListHeaderItem
@@ -38,7 +41,7 @@ const CoinsListHeader = ({
         sortKey="price_change_percentage_24h"
         onSort={onSort}
       >
-        Change 24H
+        {t("headers.change24h")}
       </CoinsListHeaderItem>
 
       <CoinsListHeaderItem
@@ -47,7 +50,7 @@ const CoinsListHeader = ({
         sortKey="market_cap"
         onSort={onSort}
       >
-        Market Cap
+        {t("headers.market_cap")}
       </CoinsListHeaderItem>
     </div>
   );

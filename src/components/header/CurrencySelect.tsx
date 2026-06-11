@@ -12,7 +12,9 @@ const CurrencySelect = () => {
       onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
     >
       {SUPPORTED_CURRENCIES.map((curr) => (
-        <option value={curr.code}>{curr.label}</option>
+        <option key={curr.code} value={curr.code}>
+          {curr.label}
+        </option>
       ))}
     </select>
   );

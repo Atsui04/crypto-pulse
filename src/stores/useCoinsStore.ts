@@ -4,8 +4,10 @@ import { CurrencyCode } from "../constants";
 
 interface CoinsState {
   currency: CurrencyCode;
+  page: number;
   sortBy: SortBy;
   sortOrder: SortOrder;
+  setPage: (newPage: number) => void;
   setCurrency: (newCurrency: CurrencyCode) => void;
   setSort: (newSortBy: SortBy) => void;
 }
@@ -14,9 +16,14 @@ export const useCoinsStore = create<CoinsState>((set, get) => ({
   currency: "usd",
   sortBy: "market_cap",
   sortOrder: "desc",
+  page: 1,
+
+  setPage: (newPage: number) => {
+    set({ page: newPage });
+  },
 
   setCurrency: (newCurrency: CurrencyCode) => {
-    set({ currency: newCurrency });
+    set({ currency: newCurrency, page: 1 });
   },
 
   setSort: (newSortBy) => {

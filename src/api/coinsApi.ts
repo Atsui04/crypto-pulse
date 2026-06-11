@@ -4,6 +4,7 @@ import { BASE_URL, CurrencyCode } from "../constants";
 
 export async function getCoins(
   currency: CurrencyCode,
+  page = 1,
   ids = "",
 ): Promise<Coin[]> {
   const res = await axios.get<Coin[]>(`${BASE_URL}/coins/markets`, {
@@ -14,8 +15,8 @@ export async function getCoins(
     params: {
       vs_currency: currency,
       order: "market_cap_desc",
-      per_page: 100,
-      page: 1,
+      per_page: 20,
+      page,
       ...(ids && { ids }),
     },
   });

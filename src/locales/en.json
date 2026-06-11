@@ -1,0 +1,62 @@
+{
+  "header": {
+    "market": "Market",
+    "favorites": "Favorites"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "search": {
+    "placeholder": "Search coin..."
+  },
+  "headers": {
+    "coin": "Coin",
+    "price": "Price",
+    "change24h": "Change 24h",
+    "market_cap": "Market Cap"
+  },
+  "button": {
+    "back": "Back to market"
+  },
+  "coin": {
+    "current_price": "Current Price",
+    "links": {
+      "text": "Links",
+      "website": "Website",
+      "reddit": "Reddit",
+      "explorer": "Explorer"
+    },
+    "stats": {
+      "text": "Stats",
+      "market_cap": "Market Cap",
+      "current_supply": "Current Supply",
+      "max_supply": "Max Supply",
+      "unlimited": "Unlimited",
+      "total_volume": "Total Volume"
+    },
+    "about": {
+      "text": "About"
+    },
+    "empty": {
+      "coins": "No coins found matching",
+      "button": "Clear search"
+    }
+  },
+  "graph": {
+    "days": {
+      "1D": "1D",
+      "7D": "7D",
+      "1M": "1M",
+      "3M": "3M"
+    }
+  },
+  "favorites": {
+    "header": "Watchlist",
+    "empty": {
+      "header": "Your Watchlist is empty",
+      "text": "Explore the market to add your favorite cryptocurrencies.",
+      "back": "Go to Market"
+    }
+  }
+}
