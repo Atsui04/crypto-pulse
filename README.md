@@ -54,6 +54,7 @@ npm run dev
 
 ## 🏗 Project Structure
 
+```
 src/
 ├── api/ # CoinGecko API request functions
 ├── components/
@@ -73,6 +74,7 @@ src/
 ├── constants.ts
 ├── i18n.ts # i18next config
 └── main.tsx # Entry point
+```
 
 ## 📈 Roadmap
 
