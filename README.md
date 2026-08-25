@@ -1,59 +1,88 @@
-# 🪙 Crypto-Pulse
+# 🪙 Crypto Pulse
 
-A modern, real-time cryptocurrency tracking web application. This project was developed to master external API integration, React hooks, and effective state management.
+A real-time cryptocurrency tracker built with React, TypeScript, and the CoinGecko API — built to practice external API integration, global state management, and type-safe React architecture.
+
+**[🔗 Live Demo](https://crypto-pulse-sigma-six.vercel.app)**
 
 ## 🚀 Features
 
-- **Real-time Data:** Fetches live prices for Top-100 cryptocurrencies using the CoinGecko API.
-- **Loading States:** Smooth user experience with a dedicated Loader component during data fetching.
-- **Responsive Design:** Dark-themed UI designed for clarity and modern aesthetics.
-- **API Security:** Implements environment variables (`.env`) to keep sensitive API keys secure.
+- **Real-time market data** — live prices for the top 100 cryptocurrencies via the CoinGecko API
+- **Search & filter** — quickly find any coin in the list
+- **Coin detail pages** — interactive historical price charts (Chart.js)
+- **Favorites** — save coins to a favorites list, persisted in local storage
+- **Multi-language UI** — internationalization powered by i18next
+- **Dark theme** — clean, modern interface with custom CSS properties
+- **Loading & error states** — smooth UX during data fetching
 
 ## 🛠 Tech Stack
 
-- **React** (Vite)
-- **JavaScript** (ES6+)
-- **CSS3** (Custom Properties, Flexbox)
-- **CoinGecko API**
+| Category     | Tools                      |
+| ------------ | -------------------------- |
+| Core         | React, TypeScript, Vite    |
+| Server state | TanStack Query             |
+| Client state | Zustand                    |
+| Routing      | React Router v7            |
+| Charts       | Chart.js / react-chartjs-2 |
+| i18n         | i18next                    |
+| HTTP client  | Axios                      |
+| API          | CoinGecko API              |
 
-## 📦 Installation & Setup
+## 📦 Getting Started
 
-1. **Clone the repository:**
+### Prerequisites
 
-   ```bash
-   git clone https://github.com/Atsui04/crypto-pulse.git
-   ```
+- Node.js 18+
+- A free CoinGecko Demo API key ([get one here](https://www.coingecko.com/en/api))
 
-2. **Install dependencies:**
+### Installation
 
-   ```
-   npm install
-   ```
+```bash
+git clone https://github.com/Atsui04/crypto-pulse.git
+cd crypto-pulse
+npm install
+```
 
-3. **Configure Environment Variables:**
+Create a `.env` file in the root directory:
 
-- **Create a .env file in the root directory.**
-- **Obtain a free Demo API Key from CoinGecko.**
-- **Add your key to the file:**
+VITE_COINGECKO_API_KEY=your_actual_key_here
 
-  ```
-  VITE_COINGECKO_API_KEY=your_actual_key_here
-  ```
+Run the dev server:
 
-4. **Run the project:**
-
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
 ## 🏗 Project Structure
 
-- **`src/api` - Services for handling external HTTP requests.**
-- **`src/components` - Reusable UI components.**
-- **`src/styles` - Global styles and dark theme configuration.**
+src/
+├── api/ # CoinGecko API request functions
+├── components/
+│ ├── coins-page/ # Coin detail page UI
+│ ├── favorites-page/ # Favorites page UI
+│ ├── header/ # Navigation, language & currency selectors
+│ ├── home-page/ # Coins list, search, pagination
+│ └── ui/ # Reusable, presentation-only components (loaders, skeletons, buttons)
+├── layout/ # App shell: Header, Footer, Outlet
+├── locales/ # en.json / uk.json translations
+├── pages/ # Route-level views: Home, CoinPage, Favorites, NotFound
+├── stores/ # Zustand stores (coins, favorites)
+├── styles/ # Global styles & theme variables
+├── types/ # Shared TypeScript types
+├── utils/ # Filtering, formatting, sorting helpers
+├── App.tsx # Root component + routes
+├── constants.ts
+├── i18n.ts # i18next config
+└── main.tsx # Entry point
 
 ## 📈 Roadmap
 
-- **[✅] Search and filter functionality.**
-- **[✅] Detailed coin pages with interactive price charts (Chart.js).**
-- **[✅] "Favorites" list with local storage persistence.**
+- [x] Search and filter functionality
+- [x] Coin detail pages with interactive price charts
+- [x] Favorites list with local storage persistence
+- [ ] Unit tests (Vitest + React Testing Library)
+- [ ] Price alerts / notifications
+- [ ] Portfolio (holdings) tracking
+
+## 👤 Author
+
+**Markiian Bushko** — [GitHub](https://github.com/Atsui04)
