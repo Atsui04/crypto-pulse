@@ -4,6 +4,8 @@ A real-time cryptocurrency tracker built with React, TypeScript, and the CoinGec
 
 **[🔗 Live Demo](https://crypto-pulse-sigma-six.vercel.app)**
 
+![Crypto Pulse demo](./public/demo.gif)
+
 ## 🚀 Features
 
 - **Real-time market data** — live prices for the top 100 cryptocurrencies via the CoinGecko API
