@@ -49,7 +49,7 @@ npm run dev
 
 ```
 src/
-api/ # services for external HTTP requests
-components/ # reusable UI components
-styles/ # global styles and dark theme config
+  api/ # services for external HTTP requests
+  components/ # reusable UI components
+  styles/ # global styles and dark theme config
 ```
