@@ -27,29 +27,29 @@ A real-time cryptocurrency tracker built to practice external API integration, R
 
 ## Running locally
 
-\`\`\`
+```
 git clone https://github.com/Atsui04/crypto-pulse.git
 cd crypto-pulse
 npm install
-\`\`\`
+```
 
 Create a `.env` file in the project root:
 
-\`\`\`
+```
 VITE_COINGECKO_API_KEY=your_actual_key_here
-\`\`\`
+```
 
 Get a free demo API key from [CoinGecko](https://www.coingecko.com/en/api).
 
-\`\`\`
+```
 npm run dev
-\`\`\`
+```
 
 ## Project structure
 
-\`\`\`
+```
 src/
 api/ # services for external HTTP requests
 components/ # reusable UI components
 styles/ # global styles and dark theme config
-\`\`\`
+```
